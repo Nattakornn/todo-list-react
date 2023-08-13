@@ -1,4 +1,4 @@
-#Todo List
+# Todo List
 
 ## Tech stack
 - Frontend - React (TypeScript)
