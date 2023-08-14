@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { TodoForm } from "./TodoForm"
 import { Todo } from "./Todo";
+import { EditTodoForm } from "./EditTodoForm";
 
 interface TodoItem {
   id: number;
@@ -12,10 +13,10 @@ interface TodoItem {
 export const TodoWrapper: React.FC = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
 
-  const addTodo = (todo: string) => {
+  const addTodo = (task: string) => {
     const newTodo: TodoItem = {
       id: Math.floor(Math.random() * 10000),
-      task: todo,
+      task: task,
       completed: false,
       isEditing: false,
     };
@@ -23,13 +24,32 @@ export const TodoWrapper: React.FC = () => {
     console.log(todos)
   };
 
+  const hangleDelete = (id:number) => {
+    setTodos(todos.filter(todo => todo.id !== id))
+  }
 
+  const toggleComplete = (id:number) => {
+    setTodos(todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo
+    ))
+  }
+
+  const editTodo = (id:number) => {
+    setTodos(todos.map(todo => todo.id === id ? {...todo, isEditing: !todo.isEditing} : todo))
+    console.log(todos)
+  }
+
+  const editTask = (task:string , id:number) =>{
+    setTodos(todos.map(todo => todo.id === id ? {...todo, task:task ,isEditing: !todo.isEditing} : todo))
+  }
   return (
     <div className="mt-20 bg-gray-600 p-8 rounded">
+        <h1 className="text-white text-2xl mb-4 font-bold">Todo List !!</h1>
         <TodoForm addTodo={addTodo}/>
-        {todos.map((todo, index) => 
-          <Todo todo={todo} key={index}/>
-        )}
+        {todos.map((todo, index) => (todo.isEditing ?  <EditTodoForm editTodo={editTask} todo={todo}/> :
+        <Todo todo={todo} key={index} toggleComplete={toggleComplete} editTodo={editTodo} handleDelete={hangleDelete}/>
+        ))
+        }
     </div>
   )
 }
+
