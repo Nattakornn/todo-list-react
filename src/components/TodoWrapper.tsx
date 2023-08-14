@@ -21,7 +21,6 @@ export const TodoWrapper: React.FC = () => {
       isEditing: false,
     };
     setTodos([...todos, newTodo]);
-    console.log(todos)
   };
 
   const hangleDelete = (id:number) => {
@@ -35,17 +34,17 @@ export const TodoWrapper: React.FC = () => {
 
   const editTodo = (id:number) => {
     setTodos(todos.map(todo => todo.id === id ? {...todo, isEditing: !todo.isEditing} : todo))
-    console.log(todos)
   }
 
   const editTask = (task:string , id:number) =>{
     setTodos(todos.map(todo => todo.id === id ? {...todo, task:task ,isEditing: !todo.isEditing} : todo))
   }
+  
   return (
     <div className="mt-20 bg-gray-600 p-8 rounded">
         <h1 className="text-white text-2xl mb-4 font-bold">Todo List !!</h1>
         <TodoForm addTodo={addTodo}/>
-        {todos.map((todo, index) => (todo.isEditing ?  <EditTodoForm editTodo={editTask} todo={todo}/> :
+        {todos.map((todo, index) => (todo.isEditing ?  <EditTodoForm editTask={editTask} todo={todo}/> :
         <Todo todo={todo} key={index} toggleComplete={toggleComplete} editTodo={editTodo} handleDelete={hangleDelete}/>
         ))
         }

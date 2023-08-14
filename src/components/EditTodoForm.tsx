@@ -1,20 +1,20 @@
 import { useState } from "react"
 
 interface props {
-  editTodo: (value:string , id:number) => void;
+  editTask: (value:string , id:number) => void;
   todo: {
     id:number;
     task:string;
   }
 }
 
-export const EditTodoForm:React.FC<props> = ({editTodo , todo}) => {
+export const EditTodoForm:React.FC<props> = ({editTask , todo}) => {
 
   const [value, setValue] = useState<string>(todo.task);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    editTodo(value , todo.id)
+    editTask(value , todo.id)
   }
   return (
     <form className="mt-4" onSubmit={handleSubmit}>
