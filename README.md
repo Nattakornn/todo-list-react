@@ -18,4 +18,4 @@ npm run dev
 ```
 
 ## Example
-(/images/Example.PNG)
+![Todo List](/images/Example.PNG)
