@@ -16,7 +16,7 @@ interface props{
 export const Todo:React.FC<props> = ({todo, handleDelete, toggleComplete, editTodo}) => {
   return (
     <div className="mt-4 flex justify-between text-white bg-gray-800 font-bold py-2 px-2 rounded">
-        <p onClick={()=> toggleComplete(todo.id)} className={`cursor-pointer ${todo.completed ? 'line-through' : ''}`}>{todo.task}</p>
+        <p onClick={()=> toggleComplete(todo.id)} className={`cursor-pointer ${todo.completed ? 'line-through opacity-60' : ''}`}>{todo.task}</p>
         <div>
           <button onClick={()=> editTodo(todo.id)}><EditIcon/></button>
           <button onClick={()=> handleDelete(todo.id)}><DeleteIcon/></button>
