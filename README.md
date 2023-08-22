@@ -16,3 +16,6 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Example
+(/images/Example.PNG)
